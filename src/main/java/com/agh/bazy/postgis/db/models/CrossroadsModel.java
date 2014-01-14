@@ -1,5 +1,7 @@
 package com.agh.bazy.postgis.db.models;
 
+import org.postgis.PGgeometry;
+
 /**
  * Created by Artur on 1/14/14.
  */
@@ -7,11 +9,11 @@ public class CrossroadsModel {
     String id;
     String name;
 
-    public String getBoundary() {
+    public PGgeometry getBoundary() {
         return boundary;
     }
 
-    public void setBoundary(String boundary) {
+    public void setBoundary(PGgeometry boundary) {
         this.boundary = boundary;
     }
 
@@ -31,5 +33,5 @@ public class CrossroadsModel {
         this.id = id;
     }
 
-    String boundary;
+    PGgeometry boundary;
 }

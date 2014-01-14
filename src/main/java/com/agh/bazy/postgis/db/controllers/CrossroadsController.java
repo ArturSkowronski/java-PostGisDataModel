@@ -2,7 +2,7 @@ package com.agh.bazy.postgis.db.controllers;
 
 import com.agh.bazy.postgis.JDBCConncetion;
 import com.agh.bazy.postgis.db.models.CrossroadsModel;
-import com.agh.bazy.postgis.db.models.WaySegmentModel;
+import org.postgis.PGgeometry;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,7 +23,7 @@ public class CrossroadsController extends Controller {
             CrossroadsModel way=new CrossroadsModel();
             way.setId(rs.getString("id"));
             way.setName(rs.getString("name"));
-            way.setBoundary(rs.getString("boundary"));
+            way.setBoundary((PGgeometry)rs.getObject(3));
             cachedTable.add(way);
         }
         return cachedTable;
