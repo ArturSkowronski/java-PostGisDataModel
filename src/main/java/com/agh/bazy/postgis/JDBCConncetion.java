@@ -1,10 +1,12 @@
 package com.agh.bazy.postgis;
 
+import org.postgresql.PGConnection;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+import org.postgis.PGgeometry;
 /**
  * Created by Artur on 1/11/14.
  */
@@ -33,8 +35,11 @@ public class JDBCConncetion {
         String password="cbtcsz1";
         String port="5432";
         String db="zikit";
+
         System.out.println("jdbc:postgresql://"+host+":"+port+"/"+db+":"+username+":"+password);
         connection = DriverManager.getConnection("jdbc:postgresql://"+host+":"+port+"/"+db, username, password);
+        ((PGConnection) connection).addDataType("geometry",Class.forName("org.postgis.PGgeometry"));
+
         System.out.println("Connected");
         return connection;
     }

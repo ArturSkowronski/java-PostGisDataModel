@@ -1,5 +1,7 @@
 package com.agh.bazy.postgis.db.models;
 
+import org.postgis.PGgeometry;
+
 /**
  * Created by Artur on 1/14/14.
  */
@@ -7,11 +9,11 @@ public class SMNodesModel {
     String id;
     String node_id;
 
-    public String getGeom() {
+    public PGgeometry getGeom() {
         return geom;
     }
 
-    public void setGeom(String geom) {
+    public void setGeom(PGgeometry geom) {
         this.geom = geom;
     }
 
@@ -31,5 +33,5 @@ public class SMNodesModel {
         this.id = id;
     }
 
-    String geom;
+    PGgeometry geom;
 }

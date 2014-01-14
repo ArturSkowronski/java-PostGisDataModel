@@ -3,6 +3,7 @@ package com.agh.bazy.postgis.db.controllers;
 import com.agh.bazy.postgis.JDBCConncetion;
 import com.agh.bazy.postgis.db.models.LanesSMNodesModel;
 import com.agh.bazy.postgis.db.models.NodesModel;
+import org.postgis.PGgeometry;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,7 +23,7 @@ public class NodesController extends Controller {
         while (rs.next()) {
             NodesModel way=new NodesModel();
             way.setId(rs.getString("id"));
-            way.setGeom(rs.getString("geom"));
+            way.setGeom((PGgeometry)rs.getObject(6));
             way.setChangeset_id(rs.getString("changeset_id"));
             way.setTstamp(rs.getString("tstamp"));
             way.setUser_id(rs.getString("user_id"));
