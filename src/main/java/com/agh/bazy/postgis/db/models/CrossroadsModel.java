@@ -8,6 +8,7 @@ import org.postgis.PGgeometry;
 public class CrossroadsModel {
     String id;
     String name;
+    PGgeometry boundary;
 
     public PGgeometry getBoundary() {
         return boundary;
@@ -33,5 +34,4 @@ public class CrossroadsModel {
         this.id = id;
     }
 
-    PGgeometry boundary;
 }

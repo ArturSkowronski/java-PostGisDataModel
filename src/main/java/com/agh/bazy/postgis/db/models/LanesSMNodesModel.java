@@ -6,7 +6,25 @@ package com.agh.bazy.postgis.db.models;
 public class LanesSMNodesModel {
     String lane_id;
     String smnode_id;
+    SMNodesModel smNode;
 
+    public LanesModel getLane() {
+        return lane;
+    }
+
+    public void setLane(LanesModel lane) {
+        this.lane = lane;
+    }
+
+    public SMNodesModel getSmNode() {
+        return smNode;
+    }
+
+    public void setSmNode(SMNodesModel smNode) {
+        this.smNode = smNode;
+    }
+
+    LanesModel lane;
     public String getSequence_id() {
         return sequence_id;
     }

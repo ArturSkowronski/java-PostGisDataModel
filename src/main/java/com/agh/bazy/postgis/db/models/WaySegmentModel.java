@@ -68,4 +68,23 @@ public class WaySegmentModel {
     String node2_id;
     String oneway;
     String highway;
+    NodesModel node2;
+
+    public NodesModel getNode1() {
+        return node1;
+    }
+
+    public void setNode1(NodesModel node1) {
+        this.node1 = node1;
+    }
+
+    public NodesModel getNode2() {
+        return node2;
+    }
+
+    public void setNode2(NodesModel node2) {
+        this.node2 = node2;
+    }
+
+    NodesModel node1;
 }

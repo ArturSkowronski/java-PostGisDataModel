@@ -1,5 +1,7 @@
 package com.agh.bazy.postgis.db.models;
 
+import com.agh.bazy.postgis.model.Crossroad;
+
 /**
  * Created by Artur on 1/14/14.
  */
@@ -7,6 +9,29 @@ public class CrossroadWaysModel {
     String crosroad_id;
     String way_segment_id;
     String crossroad_way_role;
+    WaySegmentModel waySegment;
+
+    public CrossroadsModel getCrossroad() {
+        return crossroad;
+    }
+
+    public void setCrossroad(CrossroadsModel crossroad) {
+        this.crossroad = crossroad;
+    }
+
+    public WaySegmentModel getWaySegment() {
+        return waySegment;
+    }
+
+    public void setWaySegment(WaySegmentModel waySegment) {
+        this.waySegment = waySegment;
+    }
+
+    CrossroadsModel crossroad;
+
+    public void setCrossroad_way_role(String crossroad_way_role) {
+        this.crossroad_way_role = crossroad_way_role;
+    }
 
     public String getCrosroad_id() {
         return crosroad_id;

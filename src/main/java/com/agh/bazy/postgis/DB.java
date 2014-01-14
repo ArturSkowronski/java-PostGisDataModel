@@ -1,9 +1,7 @@
     package com.agh.bazy.postgis;
 
 import com.agh.bazy.postgis.db.controllers.*;
-import com.agh.bazy.postgis.db.models.CrossroadWaysModel;
-import com.agh.bazy.postgis.db.models.CrossroadsModel;
-import com.agh.bazy.postgis.db.models.WaysModel;
+import com.agh.bazy.postgis.db.models.*;
 import com.agh.bazy.postgis.model.Crossroad;
 
 import java.sql.SQLException;
@@ -45,12 +43,45 @@ public class DB {
             lanesSMNodesTable=lanesSMNodes.getCachedTable();
             crossroadWayTable=crossroadWay.getCachedTable();
 
-            //SMNodesTable=SMNodes.getCachedTable();
-            //nodesTable=nodes.getCachedTable();
-            //crossroadTable=crossroads.getCachedTable();
+            SMNodesTable=SMNodes.getCachedTable();
+            nodesTable=nodes.getCachedTable();
+            crossroadTable=crossroads.getCachedTable();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        //Populowanie LANES_SMNODES
+        for(Object lane_smnode : lanesSMNodesTable){
+           LanesSMNodesModel lane_smnodeObject= (LanesSMNodesModel) lane_smnode;
+           for(Object lane : lanesTable){
+               LanesModel laneObject= (LanesModel) lane;
+               if(laneObject.getId().equals(lane_smnodeObject.getLane_id()))lane_smnodeObject.setLane(laneObject);
+           }
+            for(Object smnode : SMNodesTable){
+                SMNodesModel smnodeObject= (SMNodesModel) smnode;
+                if(smnodeObject.getId().equals(lane_smnodeObject.getSmnode_id()))lane_smnodeObject.setSmNode(smnodeObject);
+            }
+        }
+
+        //Populowanie WAY_SEGMENTS
+        for(Object way_segment : waySegmentsTable){
+            WaySegmentModel way_segmentObject = (WaySegmentModel) way_segment;
+            for(Object node : nodesTable){
+                NodesModel laneObject= (NodesModel) node;
+                if(laneObject.getId().equals(way_segmentObject.getNode1_id()))way_segmentObject.setNode1(laneObject);
+                if(laneObject.getId().equals(way_segmentObject.getNode2_id()))way_segmentObject.setNode2(laneObject);
+            }
+        }
+
+        //Populowanie CROSSROAD_WAYS
+        for(Object crossroad_way : crossroadWayTable){
+            CrossroadWaysModel crossroad_wayObject = (CrossroadWaysModel) crossroad_way;
+            for(Object way_segment : waySegmentsTable){
+                WaySegmentModel way_segmentObject = (WaySegmentModel) way_segment;
+                if(way_segmentObject.getId().equals(crossroad_wayObject.getWay_segment_id()))crossroad_wayObject.setWaySegment(way_segmentObject);
+           }
+
+        }
+
         generator.generateData();
 
     }
